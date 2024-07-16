@@ -10,14 +10,14 @@ import java.util.Map;
 @Component
 public class TokenGenerator {
 
-    TokenPair generateToken(String username) {
+    public TokenPair generateToken(String username) {
         return new TokenPair(
                 generateAccessToken(username),
                 generateRefreshToken(username)
         );
     }
 
-    String generateAccessToken(String username) {
+    private String generateAccessToken(String username) {
         return "Bearer " + Jwts.builder()
                 .setSubject(username)
                 .addClaims(Map.of("type", "access"))
@@ -26,7 +26,7 @@ public class TokenGenerator {
                 .compact();
     }
 
-    String generateRefreshToken(String username) {
+    private String generateRefreshToken(String username) {
         return "Bearer " + Jwts.builder()
                 .setSubject(username)
                 .addClaims(Map.of("type", "refresh"))
