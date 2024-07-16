@@ -9,4 +9,5 @@ public class ProfileResponse {
     private String nickname;
     private String userId;
     private String phone;
+    private String introduce;
 }

@@ -17,7 +17,8 @@ public class MyProfileService {
         return new ProfileResponse(
                 userJpaEntity.getNickname(),
                 userJpaEntity.getUsername(),
-                userJpaEntity.getPhone()
+                userJpaEntity.getPhone(),
+                userJpaEntity.getIntroduce()
         );
     }
 }
