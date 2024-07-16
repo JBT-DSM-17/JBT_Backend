@@ -28,13 +28,16 @@ public class GoodsJpaEntity {
     private Integer price;
 
     @Column(nullable = false)
-    private String location;
+    private Location location;
 
     @Column(nullable = false)
     private String locationDetail;
 
     @Column(nullable = false)
     private String detailUrl;
+
+    @Column(nullable = false)
+    private Category category;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
