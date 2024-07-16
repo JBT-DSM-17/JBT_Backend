@@ -2,10 +2,12 @@ package hello.jbtbe.global.security.jwt;
 
 import hello.jbtbe.global.security.jwt.vo.TokenPair;
 import io.jsonwebtoken.Jwts;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.Map;
 
+@Component
 public class TokenGenerator {
 
     TokenPair generateToken(String username) {
