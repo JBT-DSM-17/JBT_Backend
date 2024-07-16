@@ -34,6 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (token != null && token.startsWith("Bearer ")) {
             token = token.substring(7);
+            System.out.println(token);
 
             Jwt jwt = Jwts.parserBuilder()
                     .requireAudience("string")
