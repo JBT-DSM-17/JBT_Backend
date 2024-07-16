@@ -18,12 +18,7 @@ public class TokenGenerator {
 
     private final JwtProperties jwtProperties;
 
-    private Key key;
-
     public TokenPair generateToken(String username) {
-        if (key == null) {
-            key = new SecretKeySpec(jwtProperties.getSecret().getBytes(), SignatureAlgorithm.HS256.getJcaName());
-        }
 
         return new TokenPair(
                 generateAccessToken(username),
@@ -33,7 +28,7 @@ public class TokenGenerator {
 
     private String generateAccessToken(String username) {
         return "Bearer " + Jwts.builder()
-                .signWith(key)
+                .signWith(getKey())
                 .setSubject(username)
                 .addClaims(Map.of("type", "access"))
                 .setExpiration(new Date(new Date().getTime() + 60 * 60 * 3))
@@ -43,11 +38,15 @@ public class TokenGenerator {
 
     private String generateRefreshToken(String username) {
         return "Bearer " + Jwts.builder()
-                .signWith(key)
+                .signWith(getKey())
                 .setSubject(username)
                 .addClaims(Map.of("type", "refresh"))
                 .setExpiration(new Date(new Date().getTime() + 60 * 60 * 10))
                 .setIssuedAt(new Date())
                 .compact();
+    }
+
+    private Key getKey() {
+        return new SecretKeySpec(jwtProperties.getSecret().getBytes(), SignatureAlgorithm.HS256.getJcaName());
     }
 }
