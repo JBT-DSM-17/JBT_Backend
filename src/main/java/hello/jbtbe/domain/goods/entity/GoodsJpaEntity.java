@@ -39,4 +39,7 @@ public class GoodsJpaEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private UserJpaEntity user;
+
+    @Column(nullable = false)
+    private boolean isDokyung;
 }
