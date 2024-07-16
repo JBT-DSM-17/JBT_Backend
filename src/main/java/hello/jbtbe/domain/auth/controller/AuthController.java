@@ -1,6 +1,9 @@
 package hello.jbtbe.domain.auth.controller;
 
+import hello.jbtbe.domain.auth.dto.request.LoginRequest;
 import hello.jbtbe.domain.auth.dto.request.SignUpRequest;
+import hello.jbtbe.domain.auth.dto.response.LoginResponse;
+import hello.jbtbe.domain.auth.service.LoginService;
 import hello.jbtbe.domain.auth.service.SignUpService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,9 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final SignUpService signUpService;
+    private final LoginService loginService;
 
     @PostMapping("/signup")
     public void signUp(@RequestBody SignUpRequest signUpRequest) {
         signUpService.signUp(signUpRequest);
+    }
+
+    @PostMapping("/login")
+    public LoginResponse login(@RequestBody LoginRequest loginRequest) {
+        return loginService.login(loginRequest);
     }
 }
