@@ -1,6 +1,7 @@
 package hello.jbtbe.global.security.config;
 
 import hello.jbtbe.domain.user.repository.UserRepository;
+import hello.jbtbe.global.security.access.CustomAccessDeniedHandler;
 import hello.jbtbe.global.security.jwt.JwtAuthenticationFilter;
 import hello.jbtbe.global.security.jwt.TokenGenerator;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,8 @@ public class SecurityConfig {
 
     private final TokenGenerator tokenGenerator;
 
+    private final CustomAccessDeniedHandler accessDeniedHandler;
+
     @Bean
     SecurityFilterChain securityFilterChainConfig(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
@@ -35,6 +38,10 @@ public class SecurityConfig {
 
                     return config;
                 }))
+
+                .exceptionHandling(it -> {
+                    it.accessDeniedHandler(accessDeniedHandler);
+                })
 
                 .authorizeHttpRequests(
                         it -> {
