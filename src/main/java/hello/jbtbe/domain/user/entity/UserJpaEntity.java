@@ -3,7 +3,9 @@ package hello.jbtbe.domain.user.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Data
+@Builder
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
