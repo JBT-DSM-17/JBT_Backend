@@ -11,3 +11,7 @@ spring:
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     url: ${DB_URL}
+
+
+jwt:
+  secret: ${JWT_SECRET}
