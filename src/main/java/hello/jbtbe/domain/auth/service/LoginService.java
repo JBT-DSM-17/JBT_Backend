@@ -22,7 +22,7 @@ public class LoginService {
 
     public LoginResponse login(LoginRequest loginRequest) {
         UserJpaEntity user = userRepository.findByUsername(loginRequest.getUserId())
-                .orElseThrow(() -> new GlobalException(HttpStatus.NOT_FOUND, "유저를 찾지 못했습니다."));
+                .orElseThrow(() -> new GlobalException(HttpStatus.NOT_FOUND, "USER NOT FOUND"));
 
         if (!user.getPassword().equals(loginRequest.getPassword())) {
             throw new GlobalException(HttpStatus.UNAUTHORIZED, "PASSWORD MISSMATCH");
