@@ -2,6 +2,7 @@ package hello.jbtbe.global.security.config;
 
 import hello.jbtbe.domain.user.repository.UserRepository;
 import hello.jbtbe.global.security.jwt.JwtAuthenticationFilter;
+import hello.jbtbe.global.security.jwt.TokenGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,8 @@ import org.springframework.web.cors.CorsConfiguration;
 public class SecurityConfig {
 
     private final UserRepository userRepository;
+
+    private final TokenGenerator tokenGenerator;
 
     @Bean
     SecurityFilterChain securityFilterChainConfig(HttpSecurity httpSecurity) throws Exception {
@@ -43,7 +46,7 @@ public class SecurityConfig {
                 )
 
                 .addFilterBefore(
-                        new JwtAuthenticationFilter(userRepository),
+                        new JwtAuthenticationFilter(userRepository, tokenGenerator),
                         UsernamePasswordAuthenticationFilter.class
                 )
 

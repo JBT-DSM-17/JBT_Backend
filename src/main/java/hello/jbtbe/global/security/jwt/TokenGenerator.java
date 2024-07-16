@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
+import java.util.Base64;
 import java.util.Date;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ public class TokenGenerator {
                 .signWith(getKey())
                 .setSubject(username)
                 .addClaims(Map.of("type", "access"))
-                .setExpiration(new Date(new Date().getTime() + 60 * 60 * 3))
+                .setExpiration(new Date(new Date().getTime() + Integer.MAX_VALUE))
                 .setIssuedAt(new Date())
                 .compact();
     }
@@ -41,12 +42,14 @@ public class TokenGenerator {
                 .signWith(getKey())
                 .setSubject(username)
                 .addClaims(Map.of("type", "refresh"))
-                .setExpiration(new Date(new Date().getTime() + 60 * 60 * 10))
+                .setExpiration(new Date(new Date().getTime() + Integer.MAX_VALUE))
                 .setIssuedAt(new Date())
                 .compact();
     }
 
-    private Key getKey() {
-        return new SecretKeySpec(jwtProperties.getSecret().getBytes(), SignatureAlgorithm.HS256.getJcaName());
+    public Key getKey() {
+        byte[] secret = Base64.getEncoder().encode(jwtProperties.getSecret().getBytes());
+
+        return new SecretKeySpec(secret, SignatureAlgorithm.HS256.getJcaName());
     }
 }

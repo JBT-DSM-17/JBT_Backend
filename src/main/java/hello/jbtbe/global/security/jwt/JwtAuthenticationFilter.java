@@ -23,6 +23,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final UserRepository userRepository;
 
+    private final TokenGenerator tokenGenerator;
+
     @Override
     protected void doFilterInternal(
             HttpServletRequest request,
@@ -36,12 +38,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             token = token.substring(7);
             System.out.println(token);
 
-            Jwt jwt = Jwts.parserBuilder().build()
+            Jwt jwt = Jwts.parserBuilder()
+                    .setSigningKey(tokenGenerator.getKey())
+                    .build()
                     .parse(token);
 
             Claims claims = (Claims) jwt.getBody();
 
-            if (claims.getExpiration().after(new Date())) {
+            if (claims.getExpiration().before(new Date())) {
                 throw new GlobalException(HttpStatus.UNAUTHORIZED, "Expired JWT token");
             }
 
