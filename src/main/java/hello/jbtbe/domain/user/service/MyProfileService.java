@@ -18,7 +18,6 @@ public class MyProfileService {
                 userJpaEntity.getNickname(),
                 userJpaEntity.getUsername(),
                 userJpaEntity.getPhone(),
-                userJpaEntity.getIntroduce()
-        );
+                userJpaEntity.getIntroduce());
     }
 }
