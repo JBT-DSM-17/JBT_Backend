@@ -26,4 +26,7 @@ public class UserJpaEntity {
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = true)
+    private String introduce;
 }
