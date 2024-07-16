@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: JBT-BE
+
+  jpa:
+    database: mysql
+  datasource:
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    url: ${DB_URL}

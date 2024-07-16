@@ -35,6 +35,7 @@ dependencies {
 
     // Security
     implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
 
     // Validation
     implementation("org.springframework.boot:spring-boot-starter-validation")
