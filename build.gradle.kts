@@ -35,9 +35,9 @@ dependencies {
 
     // Security
     implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("io.jsonwebtoken:jjwt-api")
-    runtimeOnly("io.jsonwebtoken:jjwt-impl")
-    runtimeOnly("io.jsonwebtoken:jjwt-jackson")
+    implementation("io.jsonwebtoken:jjwt-api:latest")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:latest")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:latest")
 
     // Validation
     implementation("org.springframework.boot:spring-boot-starter-validation")
