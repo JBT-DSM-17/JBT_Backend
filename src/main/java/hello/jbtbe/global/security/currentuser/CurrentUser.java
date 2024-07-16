@@ -15,7 +15,7 @@ public class CurrentUser {
 
     private final UserRepository userRepository;
 
-    UserJpaEntity get() {
+    public UserJpaEntity get() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || authentication.getPrincipal() == null) {
