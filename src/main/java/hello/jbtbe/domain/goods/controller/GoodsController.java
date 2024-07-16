@@ -21,7 +21,6 @@ public class GoodsController {
     private final GetGoodsListService getGoodsListService;
 
     @GetMapping("/{id}")
-
     public GoodsDetailResponse getDetail(
             @PathVariable
             @Positive
@@ -31,7 +30,7 @@ public class GoodsController {
     }
 
     @GetMapping
-    public GoodsListResponse readlist (GoodsListRequest request){
+    public GoodsListResponse readList (GoodsListRequest request){
         return getGoodsListService.getGoodsList(request);
     }
 }
