@@ -5,10 +5,13 @@ import hello.jbtbe.domain.goods.dto.response.GoodsDetailResponse;
 import hello.jbtbe.domain.goods.dto.response.GoodsListResponse;
 import hello.jbtbe.domain.goods.service.GetGoodsDetailService;
 import hello.jbtbe.domain.goods.service.GetGoodsListService;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@Validated
 @RequiredArgsConstructor
 @RequestMapping("/goods")
 @RestController
@@ -28,6 +31,7 @@ public class GoodsController {
 
     @GetMapping
     public GoodsListResponse readList(
+            @Valid
             @RequestBody
             GoodsListWebRequest request
     ) {
