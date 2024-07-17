@@ -1,6 +1,6 @@
 package hello.jbtbe.domain.goods.controller;
 
-import hello.jbtbe.domain.goods.dto.request.GoodsListRequest;
+import hello.jbtbe.domain.goods.dto.request.GoodsListWebRequest;
 import hello.jbtbe.domain.goods.dto.response.GoodsDetailResponse;
 import hello.jbtbe.domain.goods.dto.response.GoodsListResponse;
 import hello.jbtbe.domain.goods.service.GetGoodsDetailService;
@@ -30,7 +30,7 @@ public class GoodsController {
     }
 
     @GetMapping
-    public GoodsListResponse readList (GoodsListRequest request){
-        return getGoodsListService.getGoodsList(request);
+    public GoodsListResponse readList(GoodsListWebRequest request) {
+        return getGoodsListService.getGoodsList(request.toRequest());
     }
 }

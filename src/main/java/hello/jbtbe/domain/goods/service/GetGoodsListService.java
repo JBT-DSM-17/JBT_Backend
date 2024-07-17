@@ -1,7 +1,6 @@
 package hello.jbtbe.domain.goods.service;
 
 import hello.jbtbe.domain.goods.dto.request.GoodsListRequest;
-import hello.jbtbe.domain.goods.dto.response.GoodsDetailResponse;
 import hello.jbtbe.domain.goods.dto.response.GoodsInfo;
 import hello.jbtbe.domain.goods.dto.response.GoodsListResponse;
 import hello.jbtbe.domain.goods.entity.GoodsJpaEntity;
