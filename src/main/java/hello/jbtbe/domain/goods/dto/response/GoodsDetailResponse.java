@@ -15,6 +15,7 @@ public class GoodsDetailResponse {
     private String picture;
     private String name;
     private Integer price;
+    private Integer otherPrice;
     private String location;
     private String locationDetail;
     private String description;
@@ -26,6 +27,7 @@ public class GoodsDetailResponse {
                 .picture(goods.getPictureUrl())
                 .name(goods.getName())
                 .price(goods.getPrice())
+                .otherPrice(goods.getOtherPrice())
                 .location(goods.getLocation().value)
                 .locationDetail(goods.getLocationDetail())
                 .description(goods.getDescription())

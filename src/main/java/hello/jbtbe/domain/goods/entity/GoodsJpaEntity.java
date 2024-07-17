@@ -28,6 +28,9 @@ public class GoodsJpaEntity {
     private Integer price;
 
     @Column(nullable = false)
+    private Integer otherPrice;
+
+    @Column(nullable = false)
     private Location location;
 
     @Column(nullable = false)
