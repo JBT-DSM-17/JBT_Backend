@@ -12,6 +12,7 @@ import lombok.Setter;
 @Builder
 public class GoodsInfo {
     private Long id;
+    private String picture;
     private String name;
     private Integer price;
     private String location;
@@ -21,6 +22,7 @@ public class GoodsInfo {
     public static GoodsInfo from(GoodsJpaEntity goods) {
         return GoodsInfo.builder()
                 .id(goods.getId())
+                .picture(goods.getPictureUrl())
                 .name(goods.getName())
                 .price(goods.getPrice())
                 .location(goods.getLocation().value)

@@ -45,4 +45,7 @@ dependencies {
     // Lombok
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
+
+    // S3
+    implementation("io.awspring.cloud:spring-cloud-aws-s3:3.0.2")
 }

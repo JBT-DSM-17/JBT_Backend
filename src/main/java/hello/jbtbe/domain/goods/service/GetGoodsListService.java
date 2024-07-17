@@ -9,8 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 @RequiredArgsConstructor
 @Service
@@ -21,8 +21,7 @@ public class GetGoodsListService {
     public GoodsListResponse getGoodsList(GoodsListRequest request) {
         List<GoodsJpaEntity> goods = goodsRepository.findAll();
 
-        System.out.println(request.getCategory());
-        System.out.println(request.getLocation());
+        Collections.shuffle(goods);
 
         if (request.getCategory() != null) {
             goods = goods.stream()
@@ -38,8 +37,6 @@ public class GetGoodsListService {
             goods = goods.stream()
                     .filter(GoodsJpaEntity::isDokyung).toList();
         }
-
-        Collections.shuffle(goods);
 
         return new GoodsListResponse(
                 goods.stream().map(GoodsInfo::from).toList()

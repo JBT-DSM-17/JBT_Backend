@@ -24,7 +24,7 @@ public class GoodsListWebRequest {
     public GoodsListRequest toRequest() {
         return new GoodsListRequest(
                 CategoryConvertor.convert(this.category),
-                LocationConvertor.convert(this.location),
+                LocationConvertor.convertList(this.location),
                 this.isDokyung
         );
     }
