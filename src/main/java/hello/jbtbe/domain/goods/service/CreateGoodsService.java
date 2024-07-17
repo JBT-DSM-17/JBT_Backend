@@ -45,12 +45,12 @@ public class CreateGoodsService {
 
     private Integer getOtherPrice(Integer price) {
 
-        int rand = (new Random().nextInt() % 21);
+        int rand = new Random().nextInt() % 18;
 
         if (rand < 0) {
-            rand = rand * -1 + 1;
+            rand = rand * -1;
         }
 
-        return price + rand * 100; // 100원 ~ 2000원 추가된 값
+        return price + (rand + 3) * 100; // 100원 ~ 2000원 추가된 값
     }
 }
