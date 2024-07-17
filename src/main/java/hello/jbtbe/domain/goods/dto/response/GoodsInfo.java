@@ -14,6 +14,7 @@ public class GoodsInfo {
     private Long id;
     private String picture;
     private String name;
+     private String sellerNickname;
     private Integer price;
     private String location;
     private String locationDetail;
@@ -24,6 +25,7 @@ public class GoodsInfo {
                 .id(goods.getId())
                 .picture(goods.getPictureUrl())
                 .name(goods.getName())
+                .sellerNickname(goods.getUser().getNickname())
                 .price(goods.getPrice())
                 .location(goods.getLocation().value)
                 .locationDetail(goods.getLocationDetail())

@@ -19,13 +19,12 @@ public class LoginService {
 
     private final TokenGenerator tokenGenerator;
 
-
     public LoginResponse login(LoginRequest loginRequest) {
         UserJpaEntity user = userRepository.findByUsername(loginRequest.getUserId())
-                .orElseThrow(() -> new GlobalException(HttpStatus.NOT_FOUND, "USER NOT FOUND"));
+                .orElseThrow(() -> new GlobalException(HttpStatus.NOT_FOUND, "User not found"));
 
         if (!user.getPassword().equals(loginRequest.getPassword())) {
-            throw new GlobalException(HttpStatus.UNAUTHORIZED, "PASSWORD MISSMATCH");
+            throw new GlobalException(HttpStatus.UNAUTHORIZED, "Password mismatch");
         }
 
         TokenPair tokenPair = tokenGenerator.generateToken(user.getUsername());
