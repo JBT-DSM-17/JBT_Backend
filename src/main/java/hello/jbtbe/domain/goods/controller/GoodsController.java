@@ -7,10 +7,7 @@ import hello.jbtbe.domain.goods.service.GetGoodsDetailService;
 import hello.jbtbe.domain.goods.service.GetGoodsListService;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/goods")
@@ -30,7 +27,10 @@ public class GoodsController {
     }
 
     @GetMapping
-    public GoodsListResponse readList(GoodsListWebRequest request) {
+    public GoodsListResponse readList(
+            @RequestBody
+            GoodsListWebRequest request
+    ) {
         return getGoodsListService.getGoodsList(request.toRequest());
     }
 }

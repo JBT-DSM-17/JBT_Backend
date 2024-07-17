@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class GoodsInfo {
+    private Long id;
     private String name;
     private Integer price;
     private String location;
@@ -19,6 +20,7 @@ public class GoodsInfo {
 
     public static GoodsInfo from(GoodsJpaEntity goods) {
         return GoodsInfo.builder()
+                .id(goods.getId())
                 .name(goods.getName())
                 .price(goods.getPrice())
                 .location(goods.getLocation().value)

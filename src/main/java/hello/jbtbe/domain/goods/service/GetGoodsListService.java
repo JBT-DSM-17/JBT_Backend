@@ -19,6 +19,9 @@ public class GetGoodsListService {
     public GoodsListResponse getGoodsList(GoodsListRequest request) {
         List<GoodsJpaEntity> goods = goodsRepository.findAll();
 
+        System.out.println(request.getCategory());
+        System.out.println(request.getLocation());
+
         if (request.getCategory() != null) {
             goods = goods.stream()
                     .filter(it -> request.getCategory().equals(it.getCategory())).toList();
