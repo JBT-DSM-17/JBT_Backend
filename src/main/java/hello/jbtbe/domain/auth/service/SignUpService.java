@@ -29,6 +29,7 @@ public class SignUpService {
                         .nickname(signUpRequest.getNickname())
                         .phone(signUpRequest.getPhone())
                         .password(signUpRequest.getPassword())
+                        .introduce(null)
                         .build());
     }
 

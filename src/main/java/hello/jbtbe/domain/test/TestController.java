@@ -12,6 +12,7 @@ public class TestController {
 
     @GetMapping
     public String test() {
+        System.out.println("TestController");
         return "Server Running";
     }
 }
