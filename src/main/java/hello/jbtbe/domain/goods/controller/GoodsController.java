@@ -29,7 +29,7 @@ public class GoodsController {
         return getGoodsDetailService.getGoodsDetail(id);
     }
 
-    @GetMapping
+    @PostMapping
     public GoodsListResponse readList(
             @Valid
             @RequestBody

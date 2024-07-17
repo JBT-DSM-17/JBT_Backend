@@ -8,7 +8,9 @@ import hello.jbtbe.domain.goods.repository.GoodsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 @RequiredArgsConstructor
 @Service
@@ -34,11 +36,13 @@ public class GetGoodsListService {
 
         if (request.isDokyung()) {
             goods = goods.stream()
-                    .filter(it -> it.isDokyung()).toList();
+                    .filter(GoodsJpaEntity::isDokyung).toList();
         }
 
+        Collections.shuffle(goods);
+
         return new GoodsListResponse(
-                goods.stream().map(it -> GoodsInfo.from(it)).toList()
+                goods.stream().map(GoodsInfo::from).toList()
         );
     }
 }
