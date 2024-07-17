@@ -1,6 +1,5 @@
 package hello.jbtbe.global.security.jwt;
 
-import hello.jbtbe.domain.user.repository.UserRepository;
 import hello.jbtbe.global.exception.GlobalException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwt;
@@ -22,8 +21,6 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final UserRepository userRepository;
-
     private final TokenGenerator tokenGenerator;
 
     @Override
@@ -37,7 +34,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (token != null && token.startsWith("Bearer ")) {
             token = token.substring(7);
-            System.out.println(token);
 
             Jwt jwt = Jwts.parserBuilder()
                     .setSigningKey(tokenGenerator.getKey())

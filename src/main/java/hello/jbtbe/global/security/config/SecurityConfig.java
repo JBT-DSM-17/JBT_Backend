@@ -1,6 +1,5 @@
 package hello.jbtbe.global.security.config;
 
-import hello.jbtbe.domain.user.repository.UserRepository;
 import hello.jbtbe.global.security.access.CustomAccessDeniedHandler;
 import hello.jbtbe.global.security.jwt.JwtAuthenticationFilter;
 import hello.jbtbe.global.security.jwt.TokenGenerator;
@@ -17,8 +16,6 @@ import org.springframework.web.cors.CorsConfiguration;
 @RequiredArgsConstructor
 @Configuration
 public class SecurityConfig {
-
-    private final UserRepository userRepository;
 
     private final TokenGenerator tokenGenerator;
 
@@ -39,22 +36,18 @@ public class SecurityConfig {
                     return config;
                 }))
 
-                .exceptionHandling(it -> {
-                    it.accessDeniedHandler(accessDeniedHandler);
-                })
+                .exceptionHandling(it -> it.accessDeniedHandler(accessDeniedHandler))
 
                 .authorizeHttpRequests(
-                        it -> {
-                            it
-                                    .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
-                                    .requestMatchers(HttpMethod.GET, "/auth/**").permitAll()
-                                    .requestMatchers(HttpMethod.GET, "/test/**").permitAll()
-                                    .anyRequest().authenticated();
-                        }
+                        it -> it
+                                .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/auth/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/test/**").permitAll()
+                                .anyRequest().authenticated()
                 )
 
                 .addFilterBefore(
-                        new JwtAuthenticationFilter(userRepository, tokenGenerator),
+                        new JwtAuthenticationFilter(tokenGenerator),
                         UsernamePasswordAuthenticationFilter.class
                 )
 
